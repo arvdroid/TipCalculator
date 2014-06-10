@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,7 +66,8 @@ public class TipCalculatorActivity extends ActionBarActivity {
 		
 		SeekBarListener sbl = new SeekBarListener();
         mSeekBar.setOnSeekBarChangeListener(sbl);
-        mProgressText = (TextView)findViewById(R.id.tipProgress);// what is secondary progress
+        mProgressText = (TextView)findViewById(R.id.tipProgress);
+        mProgressText.setText(String.valueOf(mSeekBar.getProgress()*5));
         
         String[] splitP = new String[]{"0", "2", "3", "4"};
         
@@ -77,8 +77,7 @@ public class TipCalculatorActivity extends ActionBarActivity {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int pos, long arg3) {
 				
-				String value = parent.getItemAtPosition(pos).toString();				
-				Log.d("split", value);
+				String value = parent.getItemAtPosition(pos).toString();
 				setBillAmountPerPerson(Integer.valueOf(value));
 			}
 
@@ -91,9 +90,16 @@ public class TipCalculatorActivity extends ActionBarActivity {
         mSplitSpinner.setAdapter(adapters);
         
         mBillAmount = (TextView)findViewById(R.id.billAmount);
+        mBillAmount.setText(currencyFormatter.format(0));
+        
         mTipAmount = (TextView)findViewById(R.id.totalTipAmount);
+        mTipAmount.setText(currencyFormatter.format(0));
+        
         mSplitAmount = (TextView)findViewById(R.id.splitTotal);
+        mSplitAmount.setText(currencyFormatter.format(0));
+        
         mSplitTip = (TextView)findViewById(R.id.splitTip);
+        mSplitTip.setText(currencyFormatter.format(0));
         
         mButtonPlus = (Button)findViewById(R.id.buttonPlus);
         mButtonMinus = (Button)findViewById(R.id.buttonMinus);
@@ -133,10 +139,8 @@ public class TipCalculatorActivity extends ActionBarActivity {
 	public double getTipAmount(){
 		String bill = mBillEdit.getText().toString();
 		double bA = bill.isEmpty()?0.00:Double.parseDouble(bill);
-		//int tip = mSeekBar.getProgress();
-		//String tipV = mProgressText.getText().toString();
 		int tip = Integer.parseInt(mProgressText.getText().toString());
-		double totalTipA = bA!=0?(bA * tip)/100 :0.00;//tip*5
+		double totalTipA = bA!=0?(bA * tip)/100 :0.00;
 		return totalTipA;
 	}
 	
