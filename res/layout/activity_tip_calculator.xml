@@ -1,0 +1,218 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.apps.calculator.TipCalculatorActivity" >
+
+    <TextView
+        android:id="@+id/billLabelView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/bill"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/billEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/billLabelView"
+        android:layout_alignBottom="@+id/billLabelView"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/billLabelView"
+        android:ems="10"
+        android:hint="@string/billHint"
+        android:inputType="numberDecimal">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/tipLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/billLabelView"
+        android:layout_below="@+id/billEditText"
+        android:layout_marginTop="20dp"
+        android:text="@string/tipLabel"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <SeekBar
+        android:id="@+id/tipSeekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/billEditText"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/billEditText"
+        android:layout_marginTop="20dp"
+        android:max="6"
+        android:progress="2" />
+
+    <!-- android:layout_alignParentRight="true"
+    	 android:layout_marginLeft="5dp"
+    	 android:layout_toLeftOf="@+id/button1"
+    	 
+    	 
+     -->
+     
+     <Button
+        android:id="@+id/buttonPlus"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tipSeekBar"
+        android:layout_toRightOf="@+id/splitTextView"
+        android:text="+" />
+
+    <TextView
+        android:id="@+id/tipProgress"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonPlus"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/buttonPlus"
+        android:text="10"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tipPerce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tipProgress"
+        android:layout_alignBottom="@+id/tipProgress"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tipProgress"
+        android:text="%"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/buttonMinus"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/tipPerce"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/tipPerce"
+        android:text="-" />
+     
+     
+     <TextView
+        android:id="@+id/splitTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tipLabel"
+        android:layout_below="@+id/buttonPlus"
+        android:layout_marginTop="40dp"
+        android:text="@string/splitLabel"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <Spinner
+        android:id="@+id/splitSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonPlus"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/splitTextView" />
+
+    <FrameLayout
+        android:id="@+id/billDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/splitTextView"
+        android:layout_below="@+id/splitSpinner"
+        android:layout_marginTop="30dp" >
+
+        <TextView
+             android:id="@+id/totalLabel"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/totalLabel"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+         <TextView
+             android:id="@+id/totalTipLabel"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="30dp"
+             android:text="@string/tipLabel"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+         <TextView
+             android:id="@+id/totalTipAmount"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="80dp"
+             android:layout_marginTop="30dp"
+             android:text="0"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+         
+         <TextView
+             android:id="@+id/totalBillLabel"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="60dp"
+             android:text="@string/costLabel"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+         <TextView
+             android:id="@+id/billAmount"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="80dp"
+             android:layout_marginTop="60dp"
+             android:text="0"
+             android:textAppearance="?android:attr/textAppearanceMedium" />         
+        
+        <TextView
+            android:id="@+id/splitPerPersonlabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:text="@string/perPersonLabel"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+         <TextView
+             android:id="@+id/tipPerPerson"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="120dp"
+             android:text="@string/tipLabel"
+             android:textAppearance="?android:attr/textAppearanceMedium" />         
+         
+         <TextView
+             android:id="@+id/splitTip"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="80dp"
+             android:layout_marginTop="120dp"
+             android:text="0"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+         
+         <TextView
+             android:id="@+id/totalPerPerson"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="150dp"
+             android:text="@string/costLabel"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+         <TextView
+             android:id="@+id/splitTotal"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="80dp"
+             android:layout_marginTop="150dp"
+             android:text="0"
+             android:textAppearance="?android:attr/textAppearanceMedium" />        
+
+    </FrameLayout>
+
+    
+
+</RelativeLayout>
+
