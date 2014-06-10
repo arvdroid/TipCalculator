@@ -1,1 +1,1 @@
-tipCalculator.gif
+![TipCaLCULATOR Demo](https://github.com/arvdroid/TipCalculator/tipCalculator.gif)
