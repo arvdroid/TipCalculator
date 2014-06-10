@@ -1,1 +1,1 @@
-(tipCalculator.gif)
+[](tipCalculator.gif)
