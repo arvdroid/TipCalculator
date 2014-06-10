@@ -51,13 +51,6 @@
         android:layout_marginTop="20dp"
         android:max="6"
         android:progress="2" />
-
-    <!-- android:layout_alignParentRight="true"
-    	 android:layout_marginLeft="5dp"
-    	 android:layout_toLeftOf="@+id/button1"
-    	 
-    	 
-     -->
      
      <Button
         android:id="@+id/buttonPlus"
@@ -74,8 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/buttonPlus"
         android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/buttonPlus"
-        android:text="10"
+        android:layout_toRightOf="@+id/buttonPlus"        
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -148,7 +140,6 @@
              android:layout_height="wrap_content"
              android:layout_marginLeft="80dp"
              android:layout_marginTop="30dp"
-             android:text="0"
              android:textAppearance="?android:attr/textAppearanceMedium" />
          
          <TextView
@@ -164,8 +155,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_marginLeft="80dp"
-             android:layout_marginTop="60dp"
-             android:text="0"
+             android:layout_marginTop="60dp"             
              android:textAppearance="?android:attr/textAppearanceMedium" />         
         
         <TextView
@@ -189,8 +179,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_marginLeft="80dp"
-             android:layout_marginTop="120dp"
-             android:text="0"
+             android:layout_marginTop="120dp"             
              android:textAppearance="?android:attr/textAppearanceMedium" />
          
          <TextView
@@ -206,8 +195,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_marginLeft="80dp"
-             android:layout_marginTop="150dp"
-             android:text="0"
+             android:layout_marginTop="150dp"             
              android:textAppearance="?android:attr/textAppearanceMedium" />        
 
     </FrameLayout>
