@@ -21,16 +21,16 @@ import android.widget.TextView;
 
 public class TipCalculatorActivity extends ActionBarActivity {
 	
-	SeekBar mSeekBar;
-    TextView mProgressText;
-    TextView mBillAmount;
-    TextView mTipAmount;
-    TextView mSplitAmount;
-    TextView mSplitTip;
-    EditText mBillEdit;
-    Spinner mSplitSpinner;
-    Button mButtonPlus;
-    Button mButtonMinus;
+	private SeekBar mSeekBar;
+	private TextView mTipText;
+	private TextView mBillAmount;
+	private TextView mTipAmount;
+	private TextView mSplitAmount;
+	private TextView mSplitTip;
+	private EditText mBillEdit;
+	private Spinner mSplitSpinner;
+	private Button mButtonPlus;
+	private Button mButtonMinus;
     
     NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
     
@@ -44,6 +44,15 @@ public class TipCalculatorActivity extends ActionBarActivity {
 			
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {				
+				double bA = getBillAmount();
+				if(bA>1000)
+					mTipText.setText(String.valueOf("30"));
+				else if (bA > 500)
+					mTipText.setText(String.valueOf("20"));
+				else if (bA > 100)
+					mTipText.setText(String.valueOf("15"));
+				else
+					mTipText.setText(String.valueOf("10"));
 				setBillAmount();
 			}
 			
@@ -66,8 +75,8 @@ public class TipCalculatorActivity extends ActionBarActivity {
 		
 		SeekBarListener sbl = new SeekBarListener();
         mSeekBar.setOnSeekBarChangeListener(sbl);
-        mProgressText = (TextView)findViewById(R.id.tipProgress);
-        mProgressText.setText(String.valueOf(mSeekBar.getProgress()*5));
+        mTipText = (TextView)findViewById(R.id.tipProgress);
+        mTipText.setText(String.valueOf(mSeekBar.getProgress()*5));
         
         String[] splitP = new String[]{"0", "2", "3", "4"};
         
@@ -108,10 +117,10 @@ public class TipCalculatorActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				String value = mProgressText.getText().toString();
+				String value = mTipText.getText().toString();
 				int tip = Integer.parseInt(value);
 				if(tip>0){
-					mProgressText.setText(String.valueOf(tip-1));
+					mTipText.setText(String.valueOf(tip-1));
 					setBillAmount();
 				}
 			}
@@ -121,9 +130,9 @@ public class TipCalculatorActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				String value = mProgressText.getText().toString();
+				String value = mTipText.getText().toString();
 				int tip = Integer.parseInt(value);
-				mProgressText.setText(String.valueOf(tip+1));
+				mTipText.setText(String.valueOf(tip+1));
 				setBillAmount();
 			}
 		});
@@ -132,20 +141,24 @@ public class TipCalculatorActivity extends ActionBarActivity {
 	public double getBillAmount(){
 		String bill = mBillEdit.getText().toString();
 		double bA = bill.isEmpty()?0.00:Double.parseDouble(bill);
-		double total = bA + getTipAmount();
+		return bA;
+	}
+	
+	public double getTotalBillAmount(){
+		double total = getBillAmount() + getTipAmount();
 		return total;
 	}
 	
 	public double getTipAmount(){
 		String bill = mBillEdit.getText().toString();
 		double bA = bill.isEmpty()?0.00:Double.parseDouble(bill);
-		int tip = Integer.parseInt(mProgressText.getText().toString());
+		int tip = Integer.parseInt(mTipText.getText().toString());
 		double totalTipA = bA!=0?(bA * tip)/100 :0.00;
 		return totalTipA;
 	}
 	
 	public void setBillAmount(){
-		double total = getBillAmount();
+		double total = getTotalBillAmount();
 		double totalTip = getTipAmount();
 		
 		mBillAmount.setText(currencyFormatter.format((total)));
@@ -156,7 +169,7 @@ public class TipCalculatorActivity extends ActionBarActivity {
 	}
 	
 	public void setBillAmountPerPerson(int split){
-		double billA = getBillAmount();
+		double billA = getTotalBillAmount();
 		double sA = split!=0?billA/split:billA;
 		
 		double billTA = getTipAmount();
@@ -171,7 +184,7 @@ public class TipCalculatorActivity extends ActionBarActivity {
 
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			mProgressText.setText(String.valueOf(progress*5));
+			mTipText.setText(String.valueOf(progress*5));
 			setBillAmount();
 		}
 
