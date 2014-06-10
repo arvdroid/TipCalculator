@@ -1,1 +1,1 @@
-[video walkthrough](tipCalculator.gif)
+![video walkthrough](tipCalculator.gif)
