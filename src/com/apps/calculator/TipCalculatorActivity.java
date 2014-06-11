@@ -53,6 +53,7 @@ public class TipCalculatorActivity extends ActionBarActivity {
 					mTipText.setText(String.valueOf("15"));
 				else
 					mTipText.setText(String.valueOf("10"));
+				updateSeekBarPosition();
 				setBillAmount();
 			}
 			
@@ -78,7 +79,7 @@ public class TipCalculatorActivity extends ActionBarActivity {
         mTipText = (TextView)findViewById(R.id.tipProgress);
         mTipText.setText(String.valueOf(mSeekBar.getProgress()*5));
         
-        String[] splitP = new String[]{"0", "2", "3", "4"};
+        String[] splitP = new String[]{"0", "2", "3", "4", "5", "6", "7"};
         
         mSplitSpinner = (Spinner)findViewById(R.id.splitSpinner);
         mSplitSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -122,6 +123,7 @@ public class TipCalculatorActivity extends ActionBarActivity {
 				if(tip>0){
 					mTipText.setText(String.valueOf(tip-1));
 					setBillAmount();
+					updateSeekBarPosition();
 				}
 			}
 		});
@@ -134,6 +136,7 @@ public class TipCalculatorActivity extends ActionBarActivity {
 				int tip = Integer.parseInt(value);
 				mTipText.setText(String.valueOf(tip+1));
 				setBillAmount();
+				updateSeekBarPosition();
 			}
 		});
 	}
@@ -178,6 +181,18 @@ public class TipCalculatorActivity extends ActionBarActivity {
 		mSplitAmount.setText(currencyFormatter.format(sA));
 		mSplitTip.setText(currencyFormatter.format(sT));
 		
+	}
+	
+	private void updateSeekBarPosition(){
+		int tip = Integer.parseInt(mTipText.getText().toString());
+		int progress = tip/5;
+		boolean update = tip%5==0;
+		if(update){
+			if(progress<=10){
+				mSeekBar.setProgress(progress);
+			}else
+				mSeekBar.setProgress(10);
+		}
 	}
 	
 	private class SeekBarListener implements SeekBar.OnSeekBarChangeListener{
