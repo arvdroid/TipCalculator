@@ -1,6 +1,6 @@
 This is Android App to calculate Tip.
 
-Time Spent: 12 hours
+Time Spent: 16 hours
 
 Completed User stories:
 
